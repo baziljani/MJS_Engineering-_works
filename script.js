@@ -213,3 +213,106 @@ window.addEventListener("scroll", () => {
     startCounter();
   }
 });
+
+
+// Dynamic header height to avoid fixed header overlapping content
+(function () {
+  const setHeaderHeight = () => {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    const h = header.offsetHeight;
+    document.documentElement.style.setProperty('--header-height', h + 'px');
+  };
+
+  // simple debounce
+  const debounce = (fn, wait = 100) => {
+    let t;
+    return (...args) => {
+      clearTimeout(t);
+      t = setTimeout(() => fn(...args), wait);
+    };
+  };
+
+  window.addEventListener('load', setHeaderHeight);
+  window.addEventListener('resize', debounce(setHeaderHeight, 120));
+
+  const headerEl = document.querySelector('.header');
+  if (headerEl && window.MutationObserver) {
+    const obs = new MutationObserver(debounce(setHeaderHeight, 80));
+    obs.observe(headerEl, { attributes: true, childList: true, subtree: true });
+  }
+  // expose for other code (e.g. toggle) to trigger header recalculation
+  window.updateHeaderHeight = setHeaderHeight;
+})();
+
+// Mobile menu toggle logic (responsive, auto close on outside click)
+(function () {
+  const toggle = document.querySelector('.menu-toggle');
+  const navInner = document.querySelector('.nav-inner');
+  if (!toggle || !navInner) return;
+
+  const THRESH = 550; // px
+
+  const debounce = (fn, wait = 100) => {
+    let t;
+    return (...args) => {
+      clearTimeout(t);
+      t = setTimeout(() => fn(...args), wait);
+    };
+  };
+
+  function applyResponsiveState() {
+    if (window.innerWidth <= THRESH) {
+      // hide nav by default on extra-narrow screens
+      navInner.classList.remove('open');
+      toggle.style.display = '';
+      toggle.setAttribute('aria-expanded', 'false');
+    } else {
+      // ensure nav visible on larger screens and hide toggle
+      navInner.classList.remove('open');
+      toggle.style.display = 'none';
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+    if (window.updateHeaderHeight) window.updateHeaderHeight();
+  }
+
+  toggle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const isOpen = navInner.classList.toggle('open');
+    // when menu changes height, update header offset
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    if (window.updateHeaderHeight) window.updateHeaderHeight();
+  });
+
+  // close menu when clicking a nav link (mobile)
+  navInner.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A' && window.innerWidth <= THRESH) {
+      navInner.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      if (window.updateHeaderHeight) window.updateHeaderHeight();
+    }
+    // If a dropdown parent is clicked, toggle its open state on narrow screens
+    if (e.target.closest('.dropdown') && window.innerWidth <= THRESH) {
+      const dd = e.target.closest('.dropdown');
+      dd.classList.toggle('open');
+    }
+  });
+
+  // close when clicking outside
+  document.addEventListener('click', function (e) {
+    if (window.innerWidth <= THRESH && navInner.classList.contains('open')) {
+      if (!navInner.contains(e.target) && !toggle.contains(e.target)) {
+        navInner.classList.remove('open');
+        // remove any open dropdown markers
+        document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+        toggle.setAttribute('aria-expanded', 'false');
+        if (window.updateHeaderHeight) window.updateHeaderHeight();
+      }
+    }
+  });
+
+  window.addEventListener('resize', debounce(applyResponsiveState, 120));
+
+  // initialize
+  applyResponsiveState();
+})();
