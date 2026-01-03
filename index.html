@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MJS Engineering Works</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="images/favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<canvas id="sparks"></canvas>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="nav-wrapper">
+
+    <div class="logo-box">
+      <img src="Assets/logo1.png" alt="MJS Logo">
+      <div class="logo">
+        <strong>MJS Engineering</strong>
+        <span>15+ Years Welding Excellence</span>
+      </div>
+    </div>
+
+    <nav class="navbar">
+      <a href="#home">Home</a>
+      <a href="#services">Works</a>
+
+      <div class="dropdown">
+        <a href="#projects">Projects ▾</a>
+        <div class="dropdown-menu">
+          <a onclick="filterProjects('all')">All Works</a>
+          <a onclick="filterProjects('ms')">MS Works</a>
+          <a onclick="filterProjects('ss')">SS Works</a>
+        </div>
+      </div>
+
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="cta">
+      <a href="tel:8248881263" class="call">Call</a>
+        <a href="https://wa.me/919159778630?text=Hello%20MJS%20Engineering%20Works,%0A%0AI%20am%20interested%20in%20your%20welding%20services.%0APlease%20share%20details%20about:%0A%E2%80%A2%20Work%20type%0A%E2%80%A2%20Price%20estimation%0A%E2%80%A2%20Time%20required%0A%0AThank%20you."
+        class="whatsapp"
+        target="_blank">
+        WhatsApp
+        </a>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <!-- <img src="Assets/logo1.png" class="hero-logo" alt="MJS Logo"> -->
+   <h2 class="hero-title">
+  15+ Years of Trusted Welding & Fabrication
+</h2>
+
+<p class="hero-sub">
+  Home Interior • Indoor & Outdoor Works • Vehicle Body • MS • SS • Industrial Fabrication
+</p>
+
+<p class="hero-tagline">
+  Strong. Precise. Reliable welding solutions for homes, industries & commercial projects.
+</p>
+    
+    <div class="hero-points">
+  <span>✔ Quality Work</span>
+  <span>✔ On-Time Delivery</span>
+  <span>✔ Affordable Pricing</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services reveal">
+  <h2 class="section-title">Our Welding Services</h2>
+
+  <div class="service-grid">
+  <div class="service-card-img">
+    <img src="Assets/ms/home_welding.jpg">
+    <h3>Home Welding</h3>
+  </div>
+
+  <div class="service-card-img">
+    <img src="Assets/ms/body_works.jpg">
+    <h3>Vehicle Body Works</h3>
+  </div>
+
+  <div class="service-card-img">
+    <img src="Assets/ms/ms1.jpeg">
+    <h3>MS Fabrication</h3>
+  </div>
+
+  <div class="service-card-img">
+    <img src="Assets/ms/ss1.jpeg">
+    <h3>SS Stainless Steel</h3>
+  </div>
+  <div class="service-card-img">
+  <img src="Assets/ms/home_interior.webp">
+  <h3>Home Interior Welding</h3>
+</div>
+
+<div class="service-card-img">
+  <img src="Assets/ms/outdoor_unit.jpg">
+  <h3>Outdoor Structural Works</h3>
+</div>
+
+<div class="service-card-img">
+  <img src="Assets/ms/indoor_unit.webp">
+  <h3>Indoor Industrial Works</h3>
+</div>
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="projects reveal">
+  <h2 class="section-title">Our Projects</h2>
+
+  <div class="project-tabs">
+    <button onclick="filterProjects('all')" class="active">All</button>
+    <button onclick="filterProjects('ms')">MS Works</button>
+    <button onclick="filterProjects('ss')">SS Works</button>
+  </div>
+
+  <div class="carousel-container">
+
+    <button class="carousel-btn left" onclick="prevSlide()">❮</button>
+
+    <div class="carousel-track">
+
+      <!-- MS WORKS -->
+       <img src="Assets/ms/ms9.jpeg" class="carousel-slide ms">
+      <img src="Assets/ms/ms10.jpeg" class="carousel-slide ms">
+      <img src="Assets/ms/ms11.jpeg" class="carousel-slide ms">
+      <img src="Assets/ms/ms12.jpeg" class="carousel-slide ms">
+
+      <!-- SS WORKS -->
+       <img src="Assets/ms/ss9.jpeg" class="carousel-slide ss">
+      <img src="Assets/ms/ss10.jpeg" class="carousel-slide ss">
+      <img src="Assets/ms/ss11.jpeg" class="carousel-slide ss">
+      <img src="Assets/ms/ss12.jpeg" class="carousel-slide ss">
+
+    </div>
+
+    <button class="carousel-btn right" onclick="nextSlide()">❯</button>
+  </div>
+</section>
+
+<section class="gallery reveal">
+  <h2 class="section-title">Our Work Gallery</h2>
+
+  <div class="gallery-grid">
+    <img src="Assets/ms/ms1.jpeg"
+     data-project="MS Gate Fabrication"
+     onclick="openModal(this.src, this.dataset.project)">
+
+    <img src="Assets/ms/ss1.jpeg"
+     data-project="SS Railing Work"
+     onclick="openModal(this.src, this.dataset.project)">
+    <img src="Assets/ms/ms2.jpeg"
+     data-project="MS Gate Fabrication"
+     onclick="openModal(this.src, this.dataset.project)">
+
+    <img src="Assets/ms/ss2.jpeg"
+     data-project="SS Railing Work"
+     onclick="openModal(this.src, this.dataset.project)">
+     <img src="Assets/ms/ms3.jpeg"
+     data-project="MS Gate Fabrication"
+     onclick="openModal(this.src, this.dataset.project)">
+
+    <img src="Assets/ms/ss3.jpeg"
+     data-project="SS Railing Work"
+     onclick="openModal(this.src, this.dataset.project)">
+
+     <img src="Assets/ms/ms4.jpeg"
+     data-project="MS Gate Fabrication"
+     onclick="openModal(this.src, this.dataset.project)">
+
+    <img src="Assets/ms/ss4.jpeg"
+     data-project="SS Railing Work"
+     onclick="openModal(this.src, this.dataset.project)">
+
+     <img src="Assets/ms/ms5.jpeg"
+     data-project="MS Gate Fabrication"
+     onclick="openModal(this.src, this.dataset.project)">
+
+    <img src="Assets/ms/ss5.jpeg"
+     data-project="SS Railing Work"
+     onclick="openModal(this.src, this.dataset.project)">
+
+     <img src="Assets/ms/ms6.jpeg"
+     data-project="MS Gate Fabrication"
+     onclick="openModal(this.src, this.dataset.project)">
+
+    <img src="Assets/ms/ss6.jpeg"
+     data-project="SS Railing Work"
+     onclick="openModal(this.src, this.dataset.project)">
+
+     <img src="Assets/ms/ms7.jpeg"
+     data-project="MS Gate Fabrication"
+     onclick="openModal(this.src, this.dataset.project)">
+
+    <img src="Assets/ms/ss7.jpeg"
+     data-project="SS Railing Work"
+     onclick="openModal(this.src, this.dataset.project)">
+
+     <img src="Assets/ms/ms8.jpeg"
+     data-project="MS Gate Fabrication"
+     onclick="openModal(this.src, this.dataset.project)">
+
+    <img src="Assets/ms/ss8.jpeg"
+     data-project="SS Railing Work"
+     onclick="openModal(this.src, this.dataset.project)">
+
+     <img src="Assets/ms/ms9.jpeg"
+     data-project="MS Gate Fabrication"
+     onclick="openModal(this.src, this.dataset.project)">
+
+    <img src="Assets/ms/ss9.jpeg"
+     data-project="SS Railing Work"
+     onclick="openModal(this.src, this.dataset.project)">
+
+     <img src="Assets/ms/ms10.jpeg"
+     data-project="MS Gate Fabrication"
+     onclick="openModal(this.src, this.dataset.project)">
+
+    <img src="Assets/ms/ss10.jpeg"
+     data-project="SS Railing Work"
+     onclick="openModal(this.src, this.dataset.project)">
+
+  </div>
+</section>
+
+<section class="cta-box reveal">
+  <h2>Need Price Details or Clarification?</h2>
+  <p>Call or WhatsApp us – we respond fast!</p>
+  <a href="tel:8248881263">Call Now</a>
+  <a href="https://wa.me/919159778630" target="_blank">WhatsApp</a>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about" class="about reveal">
+  <h2 class="section-title">About the Owner</h2>
+
+  <div class="about-box">
+    <!-- <img src="Assets/owner.png" alt="Owner" class="owner-img"> -->
+    <div>
+        <div class="owner-img-wrap">
+  <img src="Assets/owner.png" alt="Owner" class="owner-img">
+  <span class="founder-badge">Founder</span>
+</div>
+      <h3>Shameel Jani</h3>
+
+<p>
+  Founder & Lead Welding Specialist with <p class="exp-text">
+  <strong><span id="expCounter">0</span>+ Years</strong> of Professional Welding Experience
+</p>
+
+  in the welding and fabrication industry.
+</p>
+
+<p>
+  Specialized in <strong>MS & SS fabrication</strong>, delivering high-quality solutions for
+  <strong>home interior works</strong>, <strong>indoor & outdoor structures</strong>,
+  and custom fabrication projects.
+</p>
+
+<p>
+  Successfully completed hundreds of residential, commercial, and industrial projects,
+  earning strong client trust through precision work, durability, and on-time delivery.
+</p>
+
+<ul class="owner-highlights">
+  <li>✔ Home Interior & Structural Welding</li>
+  <li>✔ Indoor & Outdoor Fabrication Works</li>
+  <li>✔ Gates, Railings, Grills & Staircases</li>
+  <li>✔ Industrial & Commercial Welding Projects</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="trust-badges">
+  <div class="badge">
+    <span>🏆</span>
+    <p>500+ Projects</p>
+  </div>
+
+  <div class="badge">
+    <span>⭐</span>
+    <p>100% Client Satisfaction</p>
+  </div>
+
+  <div class="badge">
+    <span>🛠️</span>
+    <p>MS & SS Specialist</p>
+  </div>
+
+  <div class="badge">
+    <span>📍</span>
+    <p>Serving Local & Industrial Clients</p>
+  </div>
+</div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact reveal">
+  <h2 class="section-title">Contact Us</h2>
+
+  <div class="contact-box">
+    <p>📞 8248881263</p>
+    <p>📍 Tamil Nadu, India</p>
+
+    <div class="contact-buttons">
+      <a href="tel:8248881263">Call</a>
+      <a href="https://wa.me/919159778630" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+
+  <iframe
+  class="map"
+  src="https://www.google.com/maps?q=Nagampatti%20X%20Road,%20Bargur,%20Tamil%20Nadu%20635203&output=embed"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+
+</section>
+<!-- modal -->
+<!-- modal -->
+<div id="imgModal" class="modal">
+  <div class="modal-content">
+
+    <span class="close-btn" onclick="closeModal()">×</span>
+
+    <img id="modalImg">
+
+    <button class="wa-enquire" onclick="sendWAFromModal()">
+      💬 Enquire on WhatsApp
+    </button>
+
+  </div>
+</div>
+
+<!-- WhatsApp Popup
+<div id="waPopup" class="wa-popup">
+  <div class="wa-header">
+    <span>💬 MJS Engineering Works</span>
+    <button onclick="toggleWA()">×</button>
+  </div>
+
+  <textarea id="waMsg" readonly></textarea>
+
+  <a id="waSend" target="_blank" class="wa-send">
+    Send on WhatsApp
+  </a>
+</div>
+
+<button class="wa-float" onclick="toggleWA()">💬</button> -->
+
+
+
+
+
+<a href="https://wa.me/919159778630?text=Hello%20MJS%20Engineering%20Works,%0AI%20need%20welding%20service.%20Please%20share%20price%20details."
+   class="whatsapp-float"
+   target="_blank">💬</a>
+
+
+<footer class="footer">
+  © 2026 MJS Engineering Works
+  <p class="dev-credit">
+  Website Designed & Developed by <strong>Bazil J</strong>
+</p>
+
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
